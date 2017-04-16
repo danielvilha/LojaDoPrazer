@@ -9,12 +9,9 @@ package lojadoprazer;
  *
  * @author danielvilha
  */
-public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        Login.initLogin();
-    }
+public enum EmployeeType {
+    
+    FUNCIONARIO,
+    
+    GERENTE
 }
