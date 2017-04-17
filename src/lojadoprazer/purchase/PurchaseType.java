@@ -10,5 +10,7 @@ package lojadoprazer.purchase;
  * @author danielvilha
  */
 public enum PurchaseType {
-    
+    compra,
+    venda,
+    troca
 }

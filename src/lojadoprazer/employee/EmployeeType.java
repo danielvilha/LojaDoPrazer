@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lojadoprazer.client;
-
-import lojadoprazer.user.User;
+package lojadoprazer.employee;
 
 /**
  *
  * @author danielvilha
  */
-public class Client extends User {
+public enum EmployeeType {
     
+    funcionario,
+    gerente,
+    diretor
 }

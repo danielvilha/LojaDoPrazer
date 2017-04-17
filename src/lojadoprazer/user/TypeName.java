@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lojadoprazer;
+package lojadoprazer.user;
 
 /**
  *
  * @author danielvilha
  */
-public enum EmployeeType {
-    
-    FUNCIONARIO,
-    
-    GERENTE
+public enum TypeName {
+    client,
+    employee,
+    admin
 }

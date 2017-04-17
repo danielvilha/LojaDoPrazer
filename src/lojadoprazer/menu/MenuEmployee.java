@@ -6,6 +6,7 @@
 package lojadoprazer.menu;
 
 import java.util.Scanner;
+import lojadoprazer.Logout;
 
 /**
  *
@@ -42,7 +43,7 @@ public class MenuEmployee {
                     
                     break;
                 case 4:
-                    
+                    Logout.Logout();
                     break;
                 default:
                     System.out.println("Item selecionado é inválido");

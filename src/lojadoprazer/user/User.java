@@ -23,11 +23,12 @@ import org.xml.sax.SAXException;
 public class User {
     
     private int uid;
-    private int userType;
     private String cpf;
     private String login;
+    private int userType;
     private String password;
     private String userName;
+    private TypeName typeName;
     
     public User() {
     }
@@ -79,8 +80,14 @@ public class User {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-    
-    
+
+    public TypeName getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(TypeName typeName) {
+        this.typeName = typeName;
+    }
     
     public static User existLogin(NodeList nList, String login, String password) {
         User user = new User();
@@ -92,6 +99,7 @@ public class User {
                     if (eElement.getElementsByTagName("password").item(0).getTextContent() == null ? password == null : eElement.getElementsByTagName("password").item(0).getTextContent().equals(password)) {
                         user.setUid(Integer.parseInt(eElement.getElementsByTagName("uid").item(0).getTextContent()));
                         user.setUserType(Integer.parseInt(eElement.getElementsByTagName("type").item(0).getTextContent()));
+                        user.setTypeName(toTypeName(eElement.getElementsByTagName("typeName").item(0).getTextContent()));
                         user.setCpf(eElement.getElementsByTagName("cpf").item(0).getTextContent());
                         user.setLogin(eElement.getElementsByTagName("login").item(0).getTextContent());
                         user.setPassword(eElement.getElementsByTagName("password").item(0).getTextContent());
@@ -121,6 +129,8 @@ public class User {
                     if (Integer.parseInt(eElement.getElementsByTagName("uid").item(0).getTextContent()) == uid) {
                         user.setUid(Integer.parseInt(eElement.getElementsByTagName("uid").item(0).getTextContent()));
                         user.setUserType(Integer.parseInt(eElement.getElementsByTagName("type").item(0).getTextContent()));
+                        user.setTypeName(toTypeName(eElement.getElementsByTagName("typeName").item(0).getTextContent()));
+                        user.setCpf(eElement.getElementsByTagName("cpf").item(0).getTextContent());
                         user.setLogin(eElement.getElementsByTagName("login").item(0).getTextContent());
                         user.setPassword(eElement.getElementsByTagName("password").item(0).getTextContent());
                         user.setUserName(eElement.getElementsByTagName("userName").item(0).getTextContent());
@@ -131,5 +141,15 @@ public class User {
             System.out.println("Erro: " + e.getMessage());
         }
         return user;
+    }
+    
+    public static TypeName toTypeName(String tName) {
+        if (tName.equals("client")) {
+            return TypeName.client;
+        } else if (tName.equals("employee")) {
+            return TypeName.employee;
+        } else {
+            return TypeName.admin;
+        }
     }
 }

@@ -3,14 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lojadoprazer.client;
-
-import lojadoprazer.user.User;
+package lojadoprazer;
 
 /**
  *
  * @author danielvilha
  */
-public class Client extends User {
+public class Logout {
     
+    public static void Logout() {
+        System.out.println("----------------- Obrigado por usar o sistema. -----------------");
+        System.exit(0);
+    }
 }
