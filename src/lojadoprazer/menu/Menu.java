@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lojadoprazer.client;
-
-import lojadoprazer.user.User;
+package lojadoprazer.menu;
 
 /**
  *
  * @author danielvilha
  */
-public class Client extends User {
+public interface Menu {
     
+    public abstract void createMenu(int id);
 }

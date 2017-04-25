@@ -7,14 +7,21 @@ package lojadoprazer.menu;
 
 import java.util.Scanner;
 import lojadoprazer.Logout;
+import lojadoprazer.controller.ClientController;
+import lojadoprazer.controller.PurchaseController;
 
 /**
  *
  * @author danielvilha
  */
-public class MenuClient {
+public class MenuClient implements Menu {
     
-    public final static void createMenuClient(int id) {
+    /**
+     *
+     * @param id
+     */
+    @Override
+    public void createMenu(int id) {
         Scanner scanner = new Scanner(System.in);
         int selection = 0;
         
@@ -33,10 +40,12 @@ public class MenuClient {
             
             switch (selection) {
                 case 1:
-                    
+                    new PurchaseController().buy(id);
+                    createMenu(id);
                     break;
                 case 2:
-                    
+                    new ClientController().listMyPurchases(id);
+                    createMenu(id);
                     break;
                 case 3:
                     Logout.Logout();
@@ -45,8 +54,6 @@ public class MenuClient {
                     System.out.println("Item selecionado é inválido");
                     break;
             }
-            
         } while (selection != 3);
     }
-    
 }

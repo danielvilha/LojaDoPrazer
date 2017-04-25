@@ -7,14 +7,21 @@ package lojadoprazer.menu;
 
 import java.util.Scanner;
 import lojadoprazer.Logout;
+import lojadoprazer.controller.ClientController;
+import lojadoprazer.controller.EmployeeController;
 
 /**
  *
  * @author danielvilha
  */
-public class MenuEmployee {
+public class MenuEmployee implements Menu {
     
-    public final static void createMenuEmployee(int id) {
+    /**
+     *
+     * @param id
+     */
+    @Override
+    public void createMenu(int id) {
         Scanner scanner = new Scanner(System.in);
         int selection = 0;
         
@@ -24,23 +31,26 @@ public class MenuEmployee {
             System.out.println("*       MENU DO FUNCIONÁRIO     *");
             System.out.println("*                               *");
             System.out.println("*********************************");
-            System.out.println("[1] VISUALIZAR SALARIO");
-            System.out.println("[2] SOLICITAR COMPRAS");
-            System.out.println("[3] CADASTRAR CLIENTES");
-            System.out.println("[4] SAIR");
+            System.out.println("[1] VISUALIZAR SALARIO"); //ok
+            System.out.println("[2] SOLICITAR COMPRAS"); //ok
+            System.out.println("[3] CADASTRAR CLIENTES"); //ok
+            System.out.println("[4] SAIR"); //ok
             
             System.out.print("Item selecionado: ");
             selection = scanner.nextInt();
             
             switch (selection) {
                 case 1:
-                    
+                    new EmployeeController().printSalario(id);
+                    createMenu(id);
                     break;
                 case 2:
-                    
+                    new EmployeeController().requestPurchase(id);
                     break;
                 case 3:
-                    
+                    new ClientController().createUser();
+                    System.out.print("Cliente Cadastrado com sucesso!");
+                    createMenu(id);
                     break;
                 case 4:
                     Logout.Logout();

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<Purchases>
+    <Purchase>
+        <id>1</id>
+        <value>12.0</value>
+        <clientId>2</clientId>
+        <employeeId>1</employeeId>
+        <productList>1</productList>
+        <purchaseDate>10/04/2017</purchaseDate>
+        <purchaseType>venda</purchaseType>
+    </Purchase>
+    <Purchase>
+        <id>2</id>
+        <value>12.0</value>
+        <clientId>2</clientId>
+        <employeeId>1</employeeId>
+        <productList>1</productList>
+        <purchaseDate>10/04/2017</purchaseDate>
+        <purchaseType>venda</purchaseType>
+    </Purchase>
+    <Purchase>
+        <id>3</id>
+        <value>12.0</value>
+        <clientId>2</clientId>
+        <employeeId>1</employeeId>
+        <productList>1</productList>
+        <purchaseDate>10/04/2017</purchaseDate>
+        <purchaseType>venda</purchaseType>
+    </Purchase>
+</Purchases>
+
+<!--
+    private int id;
+    private double value;
+    private Client client;
+    private Date purchaseDate;
+    private Employee employee;
+    private ArrayList<ProductItem> products;
+    private PurchaseType purchaseType;
+-->

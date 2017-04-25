@@ -7,16 +7,21 @@ package lojadoprazer.menu;
 
 import java.util.Scanner;
 import lojadoprazer.Logout;
-import lojadoprazer.company.Company;
-import lojadoprazer.purchase.ApproveForPurchases;
+import lojadoprazer.controller.ApproveForPurchasesController;
+import lojadoprazer.controller.CompanyController;
 
 /**
  *
  * @author danielvilha
  */
-public class MenuCompany {
+public class MenuCompany implements Menu {
     
-    public final static void createMenuCompany(int id) {
+    /**
+     *
+     * @param id
+     */
+    @Override
+    public void createMenu(int id) {
         Scanner scanner = new Scanner(System.in);
         int selection = 0;
         
@@ -26,39 +31,39 @@ public class MenuCompany {
             System.out.println("*     MENU DO ADMINISTRADOR     *");
             System.out.println("*                               *");
             System.out.println("*********************************");
-            System.out.println("[1] LISTAR PRODUTOS");
-            System.out.println("[2] LISTAR CLIENTES");
-            System.out.println("[3] LISTAR FUNCIONARIOS");
-            System.out.println("[4] LISTAR VENDAS");
-            System.out.println("[5] APROVAR COMPRAS");
-            System.out.println("[6] CADASTRAR FUNCIONARIO");
-            System.out.println("[7] SAIR");
+            System.out.println("[1] LISTAR PRODUTOS"); //ok
+            System.out.println("[2] LISTAR CLIENTES"); //ok
+            System.out.println("[3] LISTAR FUNCIONARIOS"); //ok
+            System.out.println("[4] LISTAR VENDAS"); //ok
+            System.out.println("[5] APROVAR COMPRAS"); //ok
+            System.out.println("[6] CADASTRAR FUNCIONARIO"); //ok
+            System.out.println("[7] SAIR"); //ok
             
             System.out.print("Item selecionado: ");
             selection = scanner.nextInt();
             
             switch (selection) {
                 case 1:
-                    new Company().listProducts();
-                    createMenuCompany(id);
+                    new CompanyController().printListProducts();
+                    createMenu(id);
                     break;
                 case 2:
-                    new Company().listCustomers();
-                    createMenuCompany(id);
+                    new CompanyController().printListCustomers();
+                    createMenu(id);
                     break;
                 case 3:
-                    new Company().listEmployees();
-                    createMenuCompany(id);
+                    new CompanyController().printListEmployees();
+                    createMenu(id);
                     break;
                 case 4:
-                    new Company().listPurchase();
-                    createMenuCompany(id);
+                    new CompanyController().printListPurchase();
+                    createMenu(id);
                     break;
                 case 5:
-                    new ApproveForPurchases().listApproveForPurchases(id);
+                    new ApproveForPurchasesController().printListApproveForPurchases(id);
                     break;
                 case 6:
-                    
+                    new CompanyController().createEmployee(id);
                     break;
                 case 7:
                     Logout.Logout();

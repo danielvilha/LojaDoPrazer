@@ -3,16 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lojadoprazer.product;
+package lojadoprazer.enums;
 
 /**
  *
  * @author danielvilha
  */
-public enum ProductType {
-    acessorio,
-    cosmetico,
-    lingerie,
-    masturbador,
-    vibrador
+public enum EmployeeType {
+    funcionario,
+    gerente,
+    diretor
 }

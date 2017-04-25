@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lojadoprazer.purchase;
+package lojadoprazer.enums;
 
 /**
  *
  * @author danielvilha
  */
-public enum PurchaseType {
-    compra,
-    venda,
-    troca
+public enum TypeName {
+    client,
+    employee,
+    gerente,
+    diretor
 }

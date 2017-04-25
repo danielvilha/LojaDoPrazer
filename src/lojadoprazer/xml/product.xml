@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<ProductsItens>
+    <ProductItem>
+        <id>1</id>
+        <sku>10000001</sku>
+        <type>acessorio</type>
+        <value>12.00</value>
+        <amount>15</amount>
+        <itemName>Anel Peniano</itemName>
+        <itemDescription>Anel Peniano sem Vibrador</itemDescription>
+    </ProductItem>
+</ProductsItens>

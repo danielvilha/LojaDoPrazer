@@ -1,0 +1,121 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package lojadoprazer.controller;
+
+import com.thoughtworks.xstream.XStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import lojadoprazer.Util;
+import lojadoprazer.dto.ApproveForPurchases;
+import lojadoprazer.dto.ProductItem;
+import lojadoprazer.dto.ProductsItens;
+import lojadoprazer.menu.MenuCompany;
+
+/**
+ *
+ * @author danielvilha
+ */
+public class ApproveForPurchasesController {
+    
+    public void printListApproveForPurchases(int id) {
+        try {
+            File xmlFile = new File("/Users/danielvilha/Developer/Projects/Loja/LojaDoPrazer/src/lojadoprazer/xml/approveForPurchases.xml");
+            XStream xstream = new XStream();
+            ArrayList<ApproveForPurchases> approveForPurchasesList = (ArrayList) xstream.fromXML(new FileInputStream(xmlFile));
+            
+            System.out.println("Você tem " + approveForPurchasesList.size() + " item(ns) para aprovar a compra.\n");
+            
+            if (approveForPurchasesList.size() > 0) {
+                ArrayList<ProductItem> productItemList = new ArrayList<>();
+                for (ApproveForPurchases item : approveForPurchasesList) {
+                    productItemList.add(new ProductItemController().getProductItemById(item.getId()));
+                }
+                
+                Scanner scanner = new Scanner(System.in);
+                int selection = 0;
+                
+                do {
+                    System.out.println("********* APROVAR A COMPRA? *********");
+                    System.out.println("[1] SIM");
+                    System.out.println("[2] NÃO (Os itens serão removidos da lista!)");
+                    
+                    System.out.print("Item selecionado: ");
+                    selection = scanner.nextInt();
+
+                    switch (selection) {
+                        case 1:
+                            System.out.print("Adicionando itens ao estoque!");
+                            aprovePurchase(productItemList);
+                            new MenuCompany().createMenu(id);
+                            break;
+                        case 2:
+                            System.out.println("Compra reprovada, os itens serão removidos da lista.");
+                            reprovePurchase(productItemList);
+                            new MenuCompany().createMenu(id);
+                            break;
+                        default:
+                            System.out.println("Item selecionado é inválido");
+                            break;
+                    }
+                } while (selection != 2);
+            }
+            
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ApproveForPurchasesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void aprovePurchase(ArrayList<ProductItem> pItemList) {
+        try {
+//            File xmlFile = new File("/Users/danielvilha/Developer/Projects/Loja/LojaDoPrazer/src/lojadoprazer/xml/product.xml");
+//            XStream xstream = new XStream();
+//            ArrayList<ProductItem> productItemList = (ArrayList) xstream.fromXML(xmlFile);
+            
+            ProductsItens productItemList = Util.getProductsItens();
+            
+            for (ProductItem itemI : pItemList) {
+                int index = 0;
+                for (ProductItem itemJ : productItemList.getProductsItens()) {
+                    if (itemI.getId() == itemJ.getId()) {
+                        productItemList.getProductsItens().get(index).setAmount(itemJ.getAmount() + 1);
+                    }
+                    
+                    index++;
+                }
+            }
+            
+            System.out.println("Itens comprados com sucesso!");
+        } catch (Exception ex) {
+            Logger.getLogger(ApproveForPurchasesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void reprovePurchase(ArrayList<ProductItem> pItemList) {
+        try {
+            File xmlFile = new File("/Users/danielvilha/Developer/Projects/Loja/LojaDoPrazer/src/lojadoprazer/xml/approveForPurchases.xml");
+            XStream xStream = new XStream();
+            OutputStream outputStream = new FileOutputStream(xmlFile);
+            Writer writer = new OutputStreamWriter(outputStream, Charset.forName("UTF-8"));
+            
+            
+            xStream.toXML(new ApproveForPurchases(), writer);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ApproveForPurchasesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}

@@ -5,20 +5,20 @@
  */
 package lojadoprazer;
 
-import lojadoprazer.user.User;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
 import java.io.BufferedReader;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.DocumentBuilder;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import javax.xml.parsers.ParserConfigurationException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import lojadoprazer.controller.UserController;
+import lojadoprazer.dto.User;
+import lojadoprazer.dto.Users;
 import lojadoprazer.menu.MenuClient;
 import lojadoprazer.menu.MenuCompany;
 import lojadoprazer.menu.MenuEmployee;
-import org.xml.sax.SAXException;
 
 /**
  *
@@ -48,29 +48,32 @@ public class Login {
     
     static void runLogin(String inpUser, String inpPass) {
         try {
-            File fXmlFile = new File("/Users/danielvilha/Developer/Projects/Loja/LojaDoPrazer/src/lojadoprazer/user/users.xml");
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(fXmlFile);
-            doc.getDocumentElement().normalize();
+//            File xmlFile = new File("/Users/danielvilha/Developer/Projects/Loja/LojaDoPrazer/src/lojadoprazer/xml/user.xml");
+//            XStream xstream = new XStream(new DomDriver());
+//            xstream.alias("Users", Users.class);      
+//            xstream.addImplicitCollection(Users.class, "users");
+//            xstream.alias("User", User.class);
+//            
+//            Users userList = (Users) xstream.fromXML(xmlFile);
             
-            NodeList nList = doc.getElementsByTagName("user");
-            User u = User.existLogin(nList, inpUser, inpPass);
+            Users userList = Util.getUsersList();
+            
+            User u = UserController.existLogin(userList, inpUser, inpPass);
 
             if (u != null && u.getLogin() != null) {
                 System.out.println();
                 System.out.println();
                 System.out.println();
                 Util.clearConsole();
-                switch(u.getUserType()) {
+                switch(u.getType()) {
                     case 1:
-                        MenuEmployee.createMenuEmployee(u.getUid());
+                        new MenuEmployee().createMenu(u.getId());
                         break;
                     case 2:
-                        MenuClient.createMenuClient(u.getUid());
+                        new MenuClient().createMenu(u.getId());
                         break;
                     case 3:
-                        MenuCompany.createMenuCompany(u.getUid());
+                        new MenuCompany().createMenu(u.getId());
                         break;
                 }
             } else {
@@ -79,8 +82,8 @@ public class Login {
                 initLogin();
             }
             
-        } catch (IOException | ParserConfigurationException | SAXException e) {
-            
+        } catch (Exception ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
