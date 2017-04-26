@@ -7,7 +7,6 @@ package lojadoprazer.controller;
 
 import com.thoughtworks.xstream.XStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
@@ -94,7 +93,7 @@ public class PurchaseController {
             }
             
             
-        } while (selection == 0);
+        } while (selection != 0);
         
         System.out.println();
         System.out.println();
