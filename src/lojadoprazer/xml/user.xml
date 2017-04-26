@@ -1,42 +1,38 @@
-<?xml version="1.0"?>
-
-<!--
-<user>
-    <id></id>
-    <type></type>
-    <cpf></cpf>
-    <login></login>
-    <password></password>
-    <userName></userName>
-    <typeName></typeName>
-</user>
--->
-<lojadoprazer.dto.Users>
-    <User>
-        <id>1</id>
-        <type>1</type>
-        <cpf>17606868409</cpf>
-        <login>luiz</login>
-        <password>123456</password>
-        <userName>Luiz Ryan Pereira</userName>
-        <typeName>employee</typeName>
-    </User>
-    <User>
-        <id>2</id>
-        <type>2</type>
-        <cpf>34081105146</cpf>
-        <login>heitor</login>
-        <password>123456</password>
-        <userName>Heitor Carlos Eduardo Alexandre Rocha</userName>
-        <typeName>client</typeName>
-    </User>
-    <User>
-        <id>3</id>
-        <type>3</type>
-        <cpf>01222357208</cpf>
-        <login>caua</login>
-        <password>123456</password>
-        <userName>Cauã Yuri Freitas</userName>
-        <typeName>diretor</typeName>
-    </User>
-</lojadoprazer.dto.Users>
+<list>
+  <lojadoprazer.dto.User>
+    <id>1</id>
+    <type>1</type>
+    <cpf>17606868409</cpf>
+    <login>luiz</login>
+    <password>123456</password>
+    <userName>Luiz Ryan Pereira</userName>
+    <typeName>employee</typeName>
+  </lojadoprazer.dto.User>
+  <lojadoprazer.dto.User>
+    <id>2</id>
+    <type>2</type>
+    <cpf>34081105146</cpf>
+    <login>heitor</login>
+    <password>123456</password>
+    <userName>Heitor Carlos Eduardo Alexandre Rocha</userName>
+    <typeName>client</typeName>
+  </lojadoprazer.dto.User>
+  <lojadoprazer.dto.User>
+    <id>3</id>
+    <type>3</type>
+    <cpf>01222357208</cpf>
+    <login>caua</login>
+    <password>123456</password>
+    <userName>Cauã Yuri Freitas</userName>
+    <typeName>diretor</typeName>
+  </lojadoprazer.dto.User>
+  <lojadoprazer.dto.User>
+    <id>4</id>
+    <type>1</type>
+    <cpf>12345678911</cpf>
+    <login>e.mario</login>
+    <password>123456</password>
+    <userName>Mario Quintana</userName>
+    <typeName>employee</typeName>
+  </lojadoprazer.dto.User>
+</list>

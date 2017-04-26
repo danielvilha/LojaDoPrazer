@@ -1,15 +1,20 @@
-<?xml version="1.0"?>
-<Employees>
-    <Employee>
-        <id>1</id>
-        <matricula>100001</matricula>
-        <salario>3000.0</salario>
-        <employeeType>funcionario</employeeType>
-    </Employee>
-    <Employee>
-        <id>3</id>
-        <matricula>100002</matricula>
-        <salario>5000.0</salario>
-        <employeeType>diretor</employeeType>
-    </Employee>
-</Employees>
+<list>
+  <lojadoprazer.dto.Employee>
+    <id>1</id>
+    <matricula>100001</matricula>
+    <salario>3000.0</salario>
+    <employeeType>funcionario</employeeType>
+  </lojadoprazer.dto.Employee>
+  <lojadoprazer.dto.Employee>
+    <id>3</id>
+    <matricula>100002</matricula>
+    <salario>5000.0</salario>
+    <employeeType>diretor</employeeType>
+  </lojadoprazer.dto.Employee>
+  <lojadoprazer.dto.Employee>
+    <id>4</id>
+    <matricula>0</matricula>
+    <salario>4000.0</salario>
+    <employeeType>diretor</employeeType>
+  </lojadoprazer.dto.Employee>
+</list>
