@@ -62,7 +62,7 @@ public class ApproveForPurchasesController {
                                 break;
                             case 2:
                                 System.out.println("Compra reprovada, os itens serão removidos da lista.");
-                                reprovePurchase(productItemList);
+                                reprovePurchase();
                                 new MenuCompany().createMenu(id);
                                 break;
                             default:
@@ -94,21 +94,28 @@ public class ApproveForPurchasesController {
                 }
             }
             
-            System.out.println("Itens comprados com sucesso!");
-        } catch (Exception ex) {
-            Logger.getLogger(ApproveForPurchasesController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    private void reprovePurchase(ArrayList<ProductItem> pItemList) {
-        try {
-            File xmlFile = new File("/Users/danielvilha/Developer/Projects/Loja/LojaDoPrazer/src/lojadoprazer/xml/approveForPurchases.xml");
+            File xmlFile = new File("./src/lojadoprazer/xml/approveForPurchases.xml");
             XStream xStream = new XStream();
             OutputStream outputStream = new FileOutputStream(xmlFile);
             Writer writer = new OutputStreamWriter(outputStream, Charset.forName("UTF-8"));
             
             
-            xStream.toXML(new ApproveForPurchase(), writer);
+            xStream.toXML(productItemList, writer);
+            System.out.println("Itens comprados com sucesso!");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ApproveForPurchasesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void reprovePurchase() {
+        try {
+            File xmlFile = new File("./src/lojadoprazer/xml/approveForPurchases.xml");
+            XStream xStream = new XStream();
+            OutputStream outputStream = new FileOutputStream(xmlFile);
+            Writer writer = new OutputStreamWriter(outputStream, Charset.forName("UTF-8"));
+            
+            
+            xStream.toXML(new ApproveForPurchases(), writer);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(ApproveForPurchasesController.class.getName()).log(Level.SEVERE, null, ex);
         }

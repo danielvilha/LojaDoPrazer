@@ -49,7 +49,7 @@ public class MenuEmployee implements Menu {
                     break;
                 case 3:
                     new ClientController().createUser();
-                    System.out.print("Cliente Cadastrado com sucesso!");
+                    System.out.println("Cliente Cadastrado com sucesso!");
                     createMenu(id);
                     break;
                 case 4:

@@ -13,7 +13,7 @@ import lojadoprazer.enums.TypeName;
  *
  * @author danielvilha
  */
-@XStreamAlias("User")
+@XStreamAlias("user")
 public class User {
     
     @XStreamAlias("id")

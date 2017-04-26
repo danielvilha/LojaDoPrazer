@@ -12,7 +12,7 @@ import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
  *
  * @author danielvilha
  */
-@XStreamAlias("lojadoprazer.dto.ApproveForPurchase")
+@XStreamAlias("approveForPurchase")
 public class ApproveForPurchase {
     
     @XStreamAlias("id")

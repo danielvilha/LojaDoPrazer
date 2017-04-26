@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<Purchases>
-    <Purchase>
+<purchases>
+    <purchase>
         <id>1</id>
         <value>12.0</value>
         <clientId>2</clientId>
@@ -8,8 +8,8 @@
         <productList>1</productList>
         <purchaseDate>10/04/2017</purchaseDate>
         <purchaseType>venda</purchaseType>
-    </Purchase>
-    <Purchase>
+    </purchase>
+    <purchase>
         <id>2</id>
         <value>12.0</value>
         <clientId>2</clientId>
@@ -17,8 +17,8 @@
         <productList>1</productList>
         <purchaseDate>10/04/2017</purchaseDate>
         <purchaseType>venda</purchaseType>
-    </Purchase>
-    <Purchase>
+    </purchase>
+    <purchase>
         <id>3</id>
         <value>12.0</value>
         <clientId>2</clientId>
@@ -26,8 +26,8 @@
         <productList>1</productList>
         <purchaseDate>10/04/2017</purchaseDate>
         <purchaseType>venda</purchaseType>
-    </Purchase>
-</Purchases>
+    </purchase>
+</purchases>
 
 <!--
     private int id;

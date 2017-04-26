@@ -1,4 +1,4 @@
-<list>
+<users>
   <lojadoprazer.dto.User>
     <id>1</id>
     <type>1</type>
@@ -35,4 +35,13 @@
     <userName>Mario Quintana</userName>
     <typeName>employee</typeName>
   </lojadoprazer.dto.User>
-</list>
+  <lojadoprazer.dto.User>
+    <id>5</id>
+    <type>2</type>
+    <cpf>37189628100</cpf>
+    <login>filipe</login>
+    <password>123456</password>
+    <userName>Filipe André Igor Araújo</userName>
+    <typeName>client</typeName>
+  </lojadoprazer.dto.User>
+</users>

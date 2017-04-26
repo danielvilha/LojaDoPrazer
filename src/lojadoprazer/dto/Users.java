@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author danielvilha
  */
-@XStreamAlias("lojadoprazer.dto.Users")
+@XStreamAlias("users")
 public class Users {
     
     @XStreamImplicit

@@ -20,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import lojadoprazer.Util;
 import lojadoprazer.dto.ApproveForPurchase;
+import lojadoprazer.dto.ApproveForPurchases;
 import lojadoprazer.dto.Employee;
 import lojadoprazer.dto.Employees;
 import lojadoprazer.enums.EmployeeType;
@@ -58,7 +59,7 @@ public class EmployeeController {
             
             employeeList.getEmployees().add(employee);
             
-            File xmlFile = new File("/Users/danielvilha/Developer/Projects/Loja/LojaDoPrazer/src/lojadoprazer/xml/employee.xml");
+            File xmlFile = new File("./src/lojadoprazer/xml/employee.xml");
             XStream xStream = new XStream();
             OutputStream outputStream = new FileOutputStream(xmlFile);
             Writer writer = new OutputStreamWriter(outputStream, Charset.forName("UTF-8"));
@@ -107,25 +108,25 @@ public class EmployeeController {
             }
             
             
-        } while (selection == 0);
+        } while (selection != 0);
     }
     
     private void addRequestPurchase(ArrayList<Integer> productList) {
         try {
-            File xmlFile = new File("/Users/danielvilha/Developer/Projects/Loja/LojaDoPrazer/src/lojadoprazer/xml/approveForPurchases.xml");
+            ApproveForPurchases approveList = Util.getApproveForPurchases();
+            
+            for (int item : productList) {
+                if (approveList == null || approveList.getApproveForPurchases() == null || approveList.getApproveForPurchases().isEmpty()) {
+                    approveList = new ApproveForPurchases();
+                }
+                
+                approveList.getApproveForPurchases().add(new ApproveForPurchase(item));
+            }
+            
+            File xmlFile = new File("./src/lojadoprazer/xml/approveForPurchases.xml");
             XStream xStream = new XStream();
             OutputStream outputStream = new FileOutputStream(xmlFile);
             Writer writer = new OutputStreamWriter(outputStream, Charset.forName("UTF-8"));
-            
-            ArrayList<ApproveForPurchase> approveList = (ArrayList) xStream.fromXML(new FileInputStream(xmlFile));
-            
-            for (int item : productList) {
-                if (approveList == null || approveList.isEmpty()) {
-                    approveList = new ArrayList<>();
-                }
-                
-                approveList.add(new ApproveForPurchase(item));
-            }
             
             xStream.toXML(approveList, writer);
         } catch (FileNotFoundException ex) {

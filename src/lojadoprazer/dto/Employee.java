@@ -85,6 +85,4 @@ public class Employee {
                 "Salário: " + salario + "\n" +
                 "Tipo empregado: " + employeeType;
     }
-    
-    
 }

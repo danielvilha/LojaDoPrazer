@@ -9,7 +9,6 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import java.io.File;
 import java.io.IOException;
-import java.util.concurrent.ExecutionException;
 import lojadoprazer.dto.ApproveForPurchase;
 import lojadoprazer.dto.ApproveForPurchases;
 import lojadoprazer.dto.Employee;
@@ -42,11 +41,11 @@ public class Util {
     }
     
     public final static Users getUsers() {
-        File xmlFile = new File("/Users/danielvilha/Developer/Projects/Loja/LojaDoPrazer/src/lojadoprazer/xml/user.xml");
+        File xmlFile = new File("./src/lojadoprazer/xml/user.xml");
         XStream xstream = new XStream(new DomDriver());
-        xstream.alias("Users", Users.class);      
+        xstream.alias("users", Users.class);      
         xstream.addImplicitCollection(Users.class, "users");
-        xstream.alias("User", User.class);
+        xstream.alias("user", User.class);
 
         Users list = xstream.fromXML(xmlFile) != null ? (Users) xstream.fromXML(xmlFile) : new Users();
         
@@ -54,11 +53,11 @@ public class Util {
     }
     
     public final static ProductsItens getProductsItens() {
-        File xmlFile = new File("/Users/danielvilha/Developer/Projects/Loja/LojaDoPrazer/src/lojadoprazer/xml/product.xml");
+        File xmlFile = new File("./src/lojadoprazer/xml/product.xml");
         XStream xstream = new XStream();
-        xstream.alias("ProductsItens", ProductsItens.class);      
+        xstream.alias("productsItens", ProductsItens.class);      
         xstream.addImplicitCollection(ProductsItens.class, "productsItens");
-        xstream.alias("ProductItem", ProductItem.class);
+        xstream.alias("productItem", ProductItem.class);
         
         ProductsItens list = xstream.fromXML(xmlFile) != null ? (ProductsItens) xstream.fromXML(xmlFile) : new ProductsItens();
         
@@ -66,11 +65,11 @@ public class Util {
     }
     
     public final static Employees getEmployees() {
-        File xmlFile = new File("/Users/danielvilha/Developer/Projects/Loja/LojaDoPrazer/src/lojadoprazer/xml/employee.xml");
+        File xmlFile = new File("./src/lojadoprazer/xml/employee.xml");
         XStream xstream = new XStream();
-        xstream.alias("Employees", Employees.class);      
+        xstream.alias("employees", Employees.class);      
         xstream.addImplicitCollection(Employees.class, "employees");
-        xstream.alias("Employee", Employee.class);
+        xstream.alias("employee", Employee.class);
         
         Employees list = xstream.fromXML(xmlFile) != null ? (Employees) xstream.fromXML(xmlFile) : new Employees();
         
@@ -78,11 +77,11 @@ public class Util {
     }
     
     public final static Purchases getPurchases() {
-        File xmlFile = new File("/Users/danielvilha/Developer/Projects/Loja/LojaDoPrazer/src/lojadoprazer/xml/purchase.xml");
+        File xmlFile = new File("./src/lojadoprazer/xml/purchase.xml");
         XStream xstream = new XStream();
-        xstream.alias("Purchases", Purchases.class);      
+        xstream.alias("purchases", Purchases.class);      
         xstream.addImplicitCollection(Purchases.class, "purchases");
-        xstream.alias("Purchase", Purchase.class);
+        xstream.alias("purchase", Purchase.class);
         
         Purchases list = xstream.fromXML(xmlFile) != null ? (Purchases) xstream.fromXML(xmlFile) : new Purchases();
         
@@ -90,11 +89,11 @@ public class Util {
     }
     
     public final static ApproveForPurchases getApproveForPurchases() {
-        File xmlFile = new File("/Users/danielvilha/Developer/Projects/Loja/LojaDoPrazer/src/lojadoprazer/xml/approveForPurchases.xml");
+        File xmlFile = new File("./src/lojadoprazer/xml/approveForPurchases.xml");
         XStream xstream = new XStream();
-        xstream.alias("ApproveForPurchases", ApproveForPurchases.class);      
+        xstream.alias("approveForPurchases", ApproveForPurchases.class);      
         xstream.addImplicitCollection(ApproveForPurchases.class, "approveForPurchases");
-        xstream.alias("ApproveForPurchase", ApproveForPurchase.class);
+        xstream.alias("approveForPurchase", ApproveForPurchase.class);
         
         ApproveForPurchases list = xstream.fromXML(xmlFile) != null ? (ApproveForPurchases) xstream.fromXML(xmlFile) : new ApproveForPurchases(); 
         

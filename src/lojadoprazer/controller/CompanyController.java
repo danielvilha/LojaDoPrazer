@@ -145,7 +145,7 @@ public class CompanyController {
             System.out.print("Salário do Empregado: ");
             emp.setSalario(Double.parseDouble(br.readLine()));
             System.out.println("Matricula do Empregado: " + (100001 + list.getEmployees().size()));
-            
+            emp.setMatricula(100001 + list.getEmployees().size());
             emp.getUser().setType(1);
             emp.getUser().setTypeName(TypeName.employee);
             System.out.print("Tipo do Empregado: [1] Funcionario [2] Gerente [3] Diretor: ");

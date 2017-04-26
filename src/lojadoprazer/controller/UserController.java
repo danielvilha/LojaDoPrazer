@@ -64,7 +64,7 @@ public class UserController {
             
             userList.getUsers().add(user);
             
-            File xmlFile = new File("/Users/danielvilha/Developer/Projects/Loja/LojaDoPrazer/src/lojadoprazer/xml/user.xml");
+            File xmlFile = new File("./src/lojadoprazer/xml/user.xml");
             XStream xStream = new XStream();
             OutputStream outputStream = new FileOutputStream(xmlFile);
             Writer writer = new OutputStreamWriter(outputStream, Charset.forName("UTF-8"));
