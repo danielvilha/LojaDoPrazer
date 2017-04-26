@@ -53,17 +53,16 @@ public class EmployeeController {
     
     public int createUser(Employee employee) {
         try {
-            File xmlFile = new File("/Users/danielvilha/Developer/Projects/Loja/LojaDoPrazer/src/lojadoprazer/xml/employee.xml");
-            XStream xStream = new XStream();
-            OutputStream outputStream = new FileOutputStream(xmlFile);
-            Writer writer = new OutputStreamWriter(outputStream, Charset.forName("UTF-8"));
-            
             Employees employeeList = Util.getEmployees();
             employee.setId(new UserController().createUser(employee.getUser()));
             
             employeeList.getEmployees().add(employee);
             
-            xStream.toXML(employeeList, writer);
+            File xmlFile = new File("/Users/danielvilha/Developer/Projects/Loja/LojaDoPrazer/src/lojadoprazer/xml/employee.xml");
+            XStream xStream = new XStream();
+            OutputStream outputStream = new FileOutputStream(xmlFile);
+            Writer writer = new OutputStreamWriter(outputStream, Charset.forName("UTF-8"));
+            xStream.toXML(employeeList.getEmployees(), writer);
             
             return employee.getId();
         } catch (FileNotFoundException ex) {

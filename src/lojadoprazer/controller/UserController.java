@@ -59,17 +59,16 @@ public class UserController {
     
     public int createUser(User user) {
         try {
-            File xmlFile = new File("/Users/danielvilha/Developer/Projects/Loja/LojaDoPrazer/src/lojadoprazer/xml/user.xml");
-            XStream xStream = new XStream();
-            OutputStream outputStream = new FileOutputStream(xmlFile);
-            Writer writer = new OutputStreamWriter(outputStream, Charset.forName("UTF-8"));
-            
             Users userList = Util.getUsers();
             user.setId(userList.getUsers().size() + 1);
             
             userList.getUsers().add(user);
             
-            xStream.toXML(userList, writer);
+            File xmlFile = new File("/Users/danielvilha/Developer/Projects/Loja/LojaDoPrazer/src/lojadoprazer/xml/user.xml");
+            XStream xStream = new XStream();
+            OutputStream outputStream = new FileOutputStream(xmlFile);
+            Writer writer = new OutputStreamWriter(outputStream, Charset.forName("UTF-8"));
+            xStream.toXML(userList.getUsers(), writer);
             
             return user.getId();
         } catch (FileNotFoundException ex) {

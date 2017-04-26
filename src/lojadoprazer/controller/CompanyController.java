@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import lojadoprazer.Util;
 import lojadoprazer.dto.Employee;
+import lojadoprazer.dto.Employees;
 import lojadoprazer.dto.ProductItem;
 import lojadoprazer.dto.ProductsItens;
 import lojadoprazer.dto.Purchase;
@@ -132,6 +133,7 @@ public class CompanyController {
         emp.setUser(new User());
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         try {
+            Employees list = Util.getEmployees();
             System.out.print("Nome do Empregado: ");
             emp.getUser().setUserName(br.readLine());
             System.out.print("CPF do Empregado: ");
@@ -142,8 +144,7 @@ public class CompanyController {
             emp.getUser().setPassword(br.readLine());
             System.out.print("Salário do Empregado: ");
             emp.setSalario(Double.parseDouble(br.readLine()));
-            System.out.print("Matricula do Empregado: ");
-            emp.setMatricula(Integer.parseInt(br.readLine()));
+            System.out.println("Matricula do Empregado: " + (100001 + list.getEmployees().size()));
             
             emp.getUser().setType(1);
             emp.getUser().setTypeName(TypeName.employee);
