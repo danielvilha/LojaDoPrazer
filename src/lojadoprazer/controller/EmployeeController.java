@@ -19,7 +19,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import lojadoprazer.Util;
-import lojadoprazer.dto.ApproveForPurchases;
+import lojadoprazer.dto.ApproveForPurchase;
 import lojadoprazer.dto.Employee;
 import lojadoprazer.dto.Employees;
 import lojadoprazer.enums.EmployeeType;
@@ -58,11 +58,10 @@ public class EmployeeController {
             OutputStream outputStream = new FileOutputStream(xmlFile);
             Writer writer = new OutputStreamWriter(outputStream, Charset.forName("UTF-8"));
             
-            ArrayList<Employee> employeeList = (ArrayList) xStream.fromXML(new FileInputStream(xmlFile));
+            Employees employeeList = Util.getEmployees();
             employee.setId(new UserController().createUser(employee.getUser()));
             
-            employeeList.add(employee);
-            
+            employeeList.getEmployees().add(employee);
             
             xStream.toXML(employeeList, writer);
             
@@ -119,14 +118,14 @@ public class EmployeeController {
             OutputStream outputStream = new FileOutputStream(xmlFile);
             Writer writer = new OutputStreamWriter(outputStream, Charset.forName("UTF-8"));
             
-            ArrayList<ApproveForPurchases> approveList = (ArrayList) xStream.fromXML(new FileInputStream(xmlFile));
+            ArrayList<ApproveForPurchase> approveList = (ArrayList) xStream.fromXML(new FileInputStream(xmlFile));
             
             for (int item : productList) {
                 if (approveList == null || approveList.isEmpty()) {
                     approveList = new ArrayList<>();
                 }
                 
-                approveList.add(new ApproveForPurchases(item));
+                approveList.add(new ApproveForPurchase(item));
             }
             
             xStream.toXML(approveList, writer);

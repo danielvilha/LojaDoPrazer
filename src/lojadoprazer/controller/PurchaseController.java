@@ -20,9 +20,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import lojadoprazer.Util;
 import lojadoprazer.dto.ProductItem;
 import lojadoprazer.dto.ProductsItens;
 import lojadoprazer.dto.Purchase;
+import lojadoprazer.dto.Purchases;
 import lojadoprazer.enums.PurchaseType;
 
 /**
@@ -34,30 +36,15 @@ public class PurchaseController {
     public Purchase getPurchaseById(int id) {
         Purchase purchase = new Purchase();
         try {
-            File xmlFile = new File("/Users/danielvilha/Developer/Projects/Loja/LojaDoPrazer/src/lojadoprazer/xml/purchase.xml");
-            XStream xstream = new XStream();
-            ArrayList<Purchase> purchaseList = (ArrayList) xstream.fromXML(new FileInputStream(xmlFile));
+            Purchases purchaseList = Util.getPurchases();
             
-            for (Purchase item : purchaseList) {
+            for (Purchase item : purchaseList.getPurchases()) {
                 if (item.getId() == id) {
                     purchase = item;
                 }
             }
             return purchase;
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(PurchaseController.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
-    }
-    
-    public ArrayList<Purchase> getPurchaseList() {
-        try {
-            File xmlFile = new File("/Users/danielvilha/Developer/Projects/Loja/LojaDoPrazer/src/lojadoprazer/xml/purchase.xml");
-            XStream xstream = new XStream();
-            ArrayList<Purchase> purchaseList = (ArrayList) xstream.fromXML(new FileInputStream(xmlFile));
-            
-            return purchaseList;
-        } catch (FileNotFoundException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(PurchaseController.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }

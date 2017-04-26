@@ -7,10 +7,8 @@ package lojadoprazer.controller;
 
 import com.thoughtworks.xstream.XStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
@@ -20,6 +18,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import lojadoprazer.Util;
+import lojadoprazer.dto.ApproveForPurchase;
 import lojadoprazer.dto.ApproveForPurchases;
 import lojadoprazer.dto.ProductItem;
 import lojadoprazer.dto.ProductsItens;
@@ -33,59 +32,55 @@ public class ApproveForPurchasesController {
     
     public void printListApproveForPurchases(int id) {
         try {
-            File xmlFile = new File("/Users/danielvilha/Developer/Projects/Loja/LojaDoPrazer/src/lojadoprazer/xml/approveForPurchases.xml");
-            XStream xstream = new XStream();
-            ArrayList<ApproveForPurchases> approveForPurchasesList = (ArrayList) xstream.fromXML(new FileInputStream(xmlFile));
+            ApproveForPurchases approveForPurchasesList = Util.getApproveForPurchases();
             
-            System.out.println("Você tem " + approveForPurchasesList.size() + " item(ns) para aprovar a compra.\n");
-            
-            if (approveForPurchasesList.size() > 0) {
-                ArrayList<ProductItem> productItemList = new ArrayList<>();
-                for (ApproveForPurchases item : approveForPurchasesList) {
-                    productItemList.add(new ProductItemController().getProductItemById(item.getId()));
-                }
-                
-                Scanner scanner = new Scanner(System.in);
-                int selection = 0;
-                
-                do {
-                    System.out.println("********* APROVAR A COMPRA? *********");
-                    System.out.println("[1] SIM");
-                    System.out.println("[2] NÃO (Os itens serão removidos da lista!)");
-                    
-                    System.out.print("Item selecionado: ");
-                    selection = scanner.nextInt();
+            if (approveForPurchasesList != null && approveForPurchasesList.getApproveForPurchases() != null && !approveForPurchasesList.getApproveForPurchases().isEmpty()) {
+                System.out.println("Você tem " + approveForPurchasesList.getApproveForPurchases().size() + " item(ns) para aprovar a compra.\n");
 
-                    switch (selection) {
-                        case 1:
-                            System.out.print("Adicionando itens ao estoque!");
-                            aprovePurchase(productItemList);
-                            new MenuCompany().createMenu(id);
-                            break;
-                        case 2:
-                            System.out.println("Compra reprovada, os itens serão removidos da lista.");
-                            reprovePurchase(productItemList);
-                            new MenuCompany().createMenu(id);
-                            break;
-                        default:
-                            System.out.println("Item selecionado é inválido");
-                            break;
+                if (approveForPurchasesList.getApproveForPurchases().size() > 0) {
+                    ArrayList<ProductItem> productItemList = new ArrayList<>();
+                    for (ApproveForPurchase item : approveForPurchasesList.getApproveForPurchases()) {
+                        productItemList.add(new ProductItemController().getProductItemById(item.getId()));
                     }
-                } while (selection != 2);
+
+                    Scanner scanner = new Scanner(System.in);
+                    int selection = 0;
+
+                    do {
+                        System.out.println("********* APROVAR A COMPRA? *********");
+                        System.out.println("[1] SIM");
+                        System.out.println("[2] NÃO (Os itens serão removidos da lista!)");
+
+                        System.out.print("Item selecionado: ");
+                        selection = scanner.nextInt();
+
+                        switch (selection) {
+                            case 1:
+                                System.out.print("Adicionando itens ao estoque!");
+                                aprovePurchase(productItemList);
+                                new MenuCompany().createMenu(id);
+                                break;
+                            case 2:
+                                System.out.println("Compra reprovada, os itens serão removidos da lista.");
+                                reprovePurchase(productItemList);
+                                new MenuCompany().createMenu(id);
+                                break;
+                            default:
+                                System.out.println("Item selecionado é inválido");
+                                break;
+                        }
+                    } while (selection != 2);
+                }
+            } else {
+                System.out.println("Você não tem compras para aprovar.");
             }
-            
-            
-        } catch (FileNotFoundException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(ApproveForPurchasesController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     private void aprovePurchase(ArrayList<ProductItem> pItemList) {
         try {
-//            File xmlFile = new File("/Users/danielvilha/Developer/Projects/Loja/LojaDoPrazer/src/lojadoprazer/xml/product.xml");
-//            XStream xstream = new XStream();
-//            ArrayList<ProductItem> productItemList = (ArrayList) xstream.fromXML(xmlFile);
-            
             ProductsItens productItemList = Util.getProductsItens();
             
             for (ProductItem itemI : pItemList) {
@@ -113,7 +108,7 @@ public class ApproveForPurchasesController {
             Writer writer = new OutputStreamWriter(outputStream, Charset.forName("UTF-8"));
             
             
-            xStream.toXML(new ApproveForPurchases(), writer);
+            xStream.toXML(new ApproveForPurchase(), writer);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(ApproveForPurchasesController.class.getName()).log(Level.SEVERE, null, ex);
         }

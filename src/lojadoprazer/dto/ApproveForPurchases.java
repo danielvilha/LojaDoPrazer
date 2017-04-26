@@ -6,36 +6,25 @@
 package lojadoprazer.dto;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
+import com.thoughtworks.xstream.annotations.XStreamImplicit;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author danielvilha
  */
-@XStreamAlias("employee")
+@XStreamAlias("lojadoprazer.dto.ApproveForPurchases")
 public class ApproveForPurchases {
     
-    @XStreamAlias("id")
-    @XStreamAsAttribute
-    private int id;
+    @XStreamImplicit
+    List<ApproveForPurchase> approveForPurchases = new ArrayList<ApproveForPurchase>();
 
-    public ApproveForPurchases() {
+    public List<ApproveForPurchase> getApproveForPurchases() {
+        return approveForPurchases;
     }
 
-    public ApproveForPurchases(int id) {
-        this.id = id;
-    }
-    
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        return "Id: " + id;
+    public void setApproveForPurchases(List<ApproveForPurchase> approveForPurchases) {
+        this.approveForPurchases = approveForPurchases;
     }
 }

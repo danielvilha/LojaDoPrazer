@@ -5,10 +5,7 @@
  */
 package lojadoprazer;
 
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.DomDriver;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
@@ -48,15 +45,7 @@ public class Login {
     
     static void runLogin(String inpUser, String inpPass) {
         try {
-//            File xmlFile = new File("/Users/danielvilha/Developer/Projects/Loja/LojaDoPrazer/src/lojadoprazer/xml/user.xml");
-//            XStream xstream = new XStream(new DomDriver());
-//            xstream.alias("Users", Users.class);      
-//            xstream.addImplicitCollection(Users.class, "users");
-//            xstream.alias("User", User.class);
-//            
-//            Users userList = (Users) xstream.fromXML(xmlFile);
-            
-            Users userList = Util.getUsersList();
+            Users userList = Util.getUsers();
             
             User u = UserController.existLogin(userList, inpUser, inpPass);
 
