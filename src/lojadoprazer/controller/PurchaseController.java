@@ -110,11 +110,7 @@ public class PurchaseController {
     
     private void finishBuy(int clientId, int employeeId, ArrayList<Integer> productList) {
         try {
-            File xmlFile = new File("/Users/danielvilha/Developer/Projects/Loja/LojaDoPrazer/src/lojadoprazer/xml/purchase.xml");
-            XStream xstream = new XStream();OutputStream outputStream = new FileOutputStream(xmlFile);
-            Writer writer = new OutputStreamWriter(outputStream, Charset.forName("UTF-8"));
-            
-            ArrayList<Purchase> purchaseList = (ArrayList) xstream.fromXML(new FileInputStream(xmlFile));
+            Purchases purchaseList = Util.getPurchases();
             
             Double value = 0.0;
             Purchase purchaseItem = new Purchase();
@@ -134,8 +130,12 @@ public class PurchaseController {
             purchaseItem.setValue(value);
             purchaseItem.setProductList(new ProductItemController().listOfProducts(productList));
             
-            purchaseList.add(purchaseItem);
+            purchaseList.getPurchases().add(purchaseItem);
             
+            
+            File xmlFile = new File("./src/lojadoprazer/xml/purchase.xml");
+            XStream xstream = new XStream();OutputStream outputStream = new FileOutputStream(xmlFile);
+            Writer writer = new OutputStreamWriter(outputStream, Charset.forName("UTF-8"));
             xstream.toXML(purchaseList, writer);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(PurchaseController.class.getName()).log(Level.SEVERE, null, ex);

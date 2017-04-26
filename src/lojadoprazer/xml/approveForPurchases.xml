@@ -1,14 +1,1 @@
-<approveForPurchases>
-  <lojadoprazer.dto.ApproveForPurchase>
-    <id>1</id>
-  </lojadoprazer.dto.ApproveForPurchase>
-  <lojadoprazer.dto.ApproveForPurchase>
-    <id>1</id>
-  </lojadoprazer.dto.ApproveForPurchase>
-  <lojadoprazer.dto.ApproveForPurchase>
-    <id>1</id>
-  </lojadoprazer.dto.ApproveForPurchase>
-  <lojadoprazer.dto.ApproveForPurchase>
-    <id>1</id>
-  </lojadoprazer.dto.ApproveForPurchase>
-</approveForPurchases>
+<approveForPurchases/>

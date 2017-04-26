@@ -138,7 +138,7 @@ public class EmployeeController {
     
     public void printEmployeeList() {
         try {
-            Employees employeeList = (Employees) Util.getEmployees();
+            Employees employeeList = Util.getEmployees();
 
             for (Employee emp : employeeList.getEmployees()) {
                 emp.setUser(UserController.getUserById(emp.getId()));

@@ -95,11 +95,11 @@ public class ProductItemController {
     public String listOfProducts(ArrayList<Integer> list) {
         String result = "";
         for (int item : list) {
-            result += item;
-            if(item == list.get(list.size())) {
-                result += ",";
-            }
+            result += item + ",";
         }
+        
+        result = result.substring(0, result.length()-1);
+        
         return result;
     }
 

@@ -15,7 +15,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import lojadoprazer.Util;
 import lojadoprazer.dto.Purchase;
+import lojadoprazer.dto.Purchases;
 import lojadoprazer.dto.User;
 import lojadoprazer.enums.TypeName;
 
@@ -49,17 +51,23 @@ public class ClientController {
     
     public void listMyPurchases(int id) {
         try {
-            File xmlFile = new File("/Users/danielvilha/Developer/Projects/Loja/LojaDoPrazer/src/lojadoprazer/xml/purchase.xml");
-            XStream xstream = new XStream();
-            ArrayList<Purchase> purchaseList = (ArrayList) xstream.fromXML(new FileInputStream(xmlFile));
-
-            for (Purchase purchase : purchaseList) {
-                if (purchase.getClient().getId() == id) {
-                    purchase.toString();
+            Purchases purchaseList = Util.getPurchases();
+            boolean havePurhcase = false;
+            for (Purchase purchase : purchaseList.getPurchases()) {
+                if (purchase.getClientId() == id) {
+                    purchase.setClient(UserController.getUserById(id));
+                    purchase.setEmployee(new EmployeeController().getEmployeeById(purchase.getEmployeeId()));
+                    System.out.println(purchase.toString());
                     System.out.println();
+                    havePurhcase = true;
                 }
             }
-        } catch (FileNotFoundException ex) {
+            
+            if (!havePurhcase) {
+                System.out.println("Você ainda não tem itens comprados.");
+                System.out.println();
+            }
+        } catch (Exception ex) {
             Logger.getLogger(ClientController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

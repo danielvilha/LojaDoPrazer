@@ -114,5 +114,12 @@ public class ProductItem {
                 "Descrição: " + itemDescription;
     }
     
-    
+    public String toStringSemQuantidade() {
+        return  "Id: " + id + "\n" +
+                "SKU: " + sku + "\n" +
+                "Tipo: " + type + "\n" +
+                "Valor: R$" + value + "\n" +
+                "Nome: " + itemName + "\n" +
+                "Descrição: " + itemDescription;
+    }
 }

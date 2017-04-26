@@ -15,7 +15,7 @@ import lojadoprazer.enums.PurchaseType;
  *
  * @author danielvilha
  */
-@XStreamAlias("productItem")
+@XStreamAlias("purchase")
 public class Purchase {
     
     @XStreamAlias("id")
@@ -132,7 +132,7 @@ public class Purchase {
         ProductsItens itens = new ProductItemController().getProductItemArray(products);
         
         for (ProductItem item : itens.getProductsItens()) {
-            listString += (item.toString() + "\n");
+            listString += (item.toStringSemQuantidade() + "\n");
         }
         
         return listString;

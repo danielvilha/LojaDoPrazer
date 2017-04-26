@@ -1,12 +1,11 @@
-<?xml version="1.0"?>
 <productsItens>
-    <productItem>
-        <id>1</id>
-        <sku>10000001</sku>
-        <type>acessorio</type>
-        <value>12.00</value>
-        <amount>15</amount>
-        <itemName>Anel Peniano</itemName>
-        <itemDescription>Anel Peniano sem Vibrador</itemDescription>
-    </productItem>
+  <lojadoprazer.dto.ProductItem>
+    <id>1</id>
+    <sku>10000001</sku>
+    <amount>19</amount>
+    <type>acessorio</type>
+    <value>12.0</value>
+    <itemName>Anel Peniano</itemName>
+    <itemDescription>Anel Peniano sem Vibrador</itemDescription>
+  </lojadoprazer.dto.ProductItem>
 </productsItens>

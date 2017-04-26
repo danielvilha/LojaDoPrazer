@@ -94,14 +94,14 @@ public class ApproveForPurchasesController {
                 }
             }
             
-            File xmlFile = new File("./src/lojadoprazer/xml/approveForPurchases.xml");
+            File xmlFile = new File("./src/lojadoprazer/xml/product.xml");
             XStream xStream = new XStream();
             OutputStream outputStream = new FileOutputStream(xmlFile);
             Writer writer = new OutputStreamWriter(outputStream, Charset.forName("UTF-8"));
             
-            
             xStream.toXML(productItemList, writer);
             System.out.println("Itens comprados com sucesso!");
+            reprovePurchase();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(ApproveForPurchasesController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -113,7 +113,6 @@ public class ApproveForPurchasesController {
             XStream xStream = new XStream();
             OutputStream outputStream = new FileOutputStream(xmlFile);
             Writer writer = new OutputStreamWriter(outputStream, Charset.forName("UTF-8"));
-            
             
             xStream.toXML(new ApproveForPurchases(), writer);
         } catch (FileNotFoundException ex) {
